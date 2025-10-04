@@ -4,13 +4,10 @@ export default clerkMiddleware();
 
 export const config = {
     matcher: [
-        // Allow static assets
+        // Skip Next.js internals and all static files, unless found in search params
         '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
-
-        // ✅ Apply middleware to all API routes EXCEPT `/api/inngest`
+        // Always run for API routes
+        '/(api|trpc)(.*)',
         '/api/(?!inngest).*',
-
-        // Apply to trpc routes
-        '/trpc(.*)',
     ],
 };
